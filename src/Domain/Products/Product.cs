@@ -35,4 +35,18 @@ public sealed class Product : Entity
     {
         return new Product(Guid.CreateVersion7(), name, ProductStatus.Active, stock, description, price, createdAt);
     }
+    
+    public void Update(
+        string name,
+        ProductStatus status,
+        int stock,
+        string? description,
+        decimal price)
+    {
+        Name = name;
+        Status = status;
+        Stock = stock;
+        Description = description;
+        Price = price;
+    }
 }
