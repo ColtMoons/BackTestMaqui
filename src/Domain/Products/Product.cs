@@ -28,12 +28,11 @@ public sealed class Product : Entity
     public DateTime CreatedAt { get; private set; }
 
     public static Product Create(string name,
-        ProductStatus status,
         int stock,
         string? description,
         decimal price,
         DateTime createdAt)
     {
-        return new Product(Guid.CreateVersion7(), name, status, stock, description, price, createdAt);
+        return new Product(Guid.CreateVersion7(), name, ProductStatus.Active, stock, description, price, createdAt);
     }
 }

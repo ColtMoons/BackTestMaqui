@@ -1,3 +1,4 @@
+using System.Reflection;
 using Application.Abstractions.Messaging;
 using Domain.Abstractions;
 using FluentValidation;
@@ -61,11 +62,21 @@ public class ValidationBehaviour<TRequest, TResponse>(IEnumerable<IValidator<TRe
             return (Result.Failure(validationError) as TResult)!;
         }
 
-        object validationResult = typeof(Result<>)
-            .GetGenericTypeDefinition()
-            .MakeGenericType(typeof(TResult).GenericTypeArguments[0])
-            .GetMethod(nameof(Result.Failure))!
-            .Invoke(null, [validationError])!;
+        // Obtener el tipo genérico (ej: Guid en Result<Guid>)
+        Type resultType = typeof(TResult).GenericTypeArguments[0];
+        
+        MethodInfo failureMethod = typeof(Result)
+            .GetMethods(BindingFlags.Public | BindingFlags.Static)
+            .FirstOrDefault(m => 
+                m is { Name: nameof(Result.Failure), IsGenericMethod: true } &&
+                m.GetParameters().Length == 1 &&
+                m.GetParameters()[0].ParameterType == typeof(Error)) ?? throw new InvalidOperationException(
+                "No se pudo encontrar el método genérico Failure<TValue>(Error) en la clase Result");
+       
+        MethodInfo genericFailureMethod = failureMethod.MakeGenericMethod(resultType);
+        
+        object? validationResult = genericFailureMethod.Invoke(null, [validationError]);
+
 
         return (TResult)validationResult;
     }
