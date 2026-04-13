@@ -10,6 +10,10 @@
     <Project Path="src/Infrastructure/Infrastructure.csproj" />
     <Project Path="src/Web.Api/Web.Api.csproj" />
   </Folder>
+  <Folder Name="/src/Aspire/">
+    <Project Path="src/AppHost/AppHost.csproj" />
+    <Project Path="src/ServiceDefaults/ServiceDefaults.csproj" />
+  </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/ArchitectureTests/ArchitectureTests.csproj" />
   </Folder>

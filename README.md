@@ -99,10 +99,10 @@ clean-architecture/
 
 ### Opción 1: Con Docker Compose (recomendada)
 
-Levanta la API, PostgreSQL y Seq en un solo comando:
+Levanta la API y PostgreSQL en un solo comando:
 
 ```bash
-docker-compose -f docker-compose.yml -f docker-compose.override.yml up --build
+aspire run
 ```
 
 Los servicios estarán disponibles en:
