@@ -1,10 +1,14 @@
-﻿using Domain.Abstractions;
+﻿using Application.Abstractions.Services;
+using Domain.Abstractions;
+using Infrastructure.Cache;
 using Infrastructure.Database;
+using Infrastructure.Discounts;
 using Infrastructure.Time;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Refit;
 
 namespace Infrastructure;
 
@@ -17,12 +21,15 @@ public static class DependencyInjection
                 .AddServices()
                 .AddDatabase(configuration)
                 .AddRepositories()
+                .AddRefitClients(configuration)
                 .AddHealthChecks(configuration);
 
         private IServiceCollection AddServices()
         {
             services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
+            services.AddScoped<IDiscountService, DiscountService>();
 
+            services.AddSingleton<IStatusCacheService, StatusCacheService>();
             return services;
         }
 
@@ -57,6 +64,14 @@ public static class DependencyInjection
                     publicOnly: false)
                 .AsImplementedInterfaces()
                 .WithScopedLifetime());
+            return services;
+        }
+
+        private IServiceCollection AddRefitClients(IConfiguration configuration)
+        {
+            services.AddRefitClient<IDiscountApiClient>()
+                .ConfigureHttpClient(c => c.BaseAddress = new Uri(configuration["Api:DiscountApi"]!));
+            
             return services;
         }
     }

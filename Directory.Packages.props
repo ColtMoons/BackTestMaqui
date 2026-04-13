@@ -4,6 +4,10 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- Static code analysis -->
+    <PackageVersion Include="LazyCache" Version="2.4.0" />
+    <PackageVersion Include="LazyCache.AspNetCore" Version="2.4.0" />
+    <PackageVersion Include="Refit" Version="10.1.6" />
+    <PackageVersion Include="Refit.HttpClientFactory" Version="10.1.6" />
     <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.23.0.137933" />
     <!-- Application -->
     <PackageVersion Include="Scrutor" Version="7.0.0" />
