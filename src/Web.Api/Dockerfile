@@ -18,7 +18,6 @@ COPY ["src/Web.Api/Web.Api.csproj", "src/Web.Api/"]
 COPY ["src/Infrastructure/Infrastructure.csproj", "src/Infrastructure/"]
 COPY ["src/Application/Application.csproj", "src/Application/"]
 COPY ["src/Domain/Domain.csproj", "src/Domain/"]
-COPY ["src/SharedKernel/SharedKernel.csproj", "src/SharedKernel/"]
 RUN dotnet restore "./src/Web.Api/Web.Api.csproj"
 COPY . .
 WORKDIR "/src/src/Web.Api"
