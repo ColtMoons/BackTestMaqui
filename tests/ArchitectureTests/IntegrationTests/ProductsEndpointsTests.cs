@@ -56,9 +56,9 @@ public class ProductsEndpointsTests(IntegrationTestWebAppFactory factory) : Base
     {
         // Arrange - Crear un producto primero
         var createRequest = new CreateProductRequest(
-            Name: "Test Product",
+            Name: "Test Product1",
             Stock: 10,
-            Description: "Test Description",
+            Description: "Test Description1",
             Price: 99.99m
         );
         HttpResponseMessage createResponse = await HttpClient.PostAsJsonAsync("/products", createRequest);
@@ -106,9 +106,9 @@ public class ProductsEndpointsTests(IntegrationTestWebAppFactory factory) : Base
         Guid productId = await createResponse.Content.ReadFromJsonAsync<Guid>();
 
         var updateRequest = new UpdateProductRequest(
-            Name: "Updated Product",
+            Name: "Updated Product4",
             Stock: 20,
-            Description: "Updated Description",
+            Description: "Updated Description4",
             Price: 75m,
             Status: ProductStatus.Active
         );
@@ -135,9 +135,9 @@ public class ProductsEndpointsTests(IntegrationTestWebAppFactory factory) : Base
         // Arrange
         var nonExistingId = Guid.NewGuid();
         var updateRequest = new UpdateProductRequest(
-            Name: "Updated Product",
+            Name: "Updated Product8",
             Stock: 20,
-            Description: "Updated Description",
+            Description: "Updated Description8",
             Price: 75m,
             Status: ProductStatus.Active
         );
@@ -154,9 +154,9 @@ public class ProductsEndpointsTests(IntegrationTestWebAppFactory factory) : Base
     {
         // Arrange - Crear un producto primero
         var createRequest = new CreateProductRequest(
-            Name: "Test Product",
+            Name: "Test Product9",
             Stock: 10,
-            Description: "Test",
+            Description: "Test9",
             Price: 50m
         );
         HttpResponseMessage createResponse = await HttpClient.PostAsJsonAsync("/products", createRequest);
