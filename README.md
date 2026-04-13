@@ -92,7 +92,7 @@ clean-architecture/
 
 - [.NET 10 SDK](https://dotnet.microsoft.com/download)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop)
-
+- [Aspire](https://aspire.dev/es/get-started/install-cli/)
 ---
 
 ## Levantar el Proyecto Localmente
@@ -105,14 +105,8 @@ Levanta la API y PostgreSQL en un solo comando:
 aspire run
 ```
 
-Los servicios estarán disponibles en:
+Los servicios estarán disponibles en el enlace indicado en consola ya que aspire lo genera y usualmente pone los puertos y swagger disponibles alli mismo.
 
-| Servicio           | URL                                      |
-|--------------------|------------------------------------------|
-| Web API (HTTP)     | http://localhost:5000                    |
-| Web Swagger (HTTP) | http://localhost:5000/swagger/index.html |
-| Seq (logs)         | http://localhost:8081                    |
-| PostgreSQL         | localhost:5432                           |
 
 ## Tests
 
